@@ -1,12 +1,10 @@
 from pyniryo import *
-
 import time
 import random
 import serial
-
 from logique_jeu import drop_piece, verif_gagnant, coups_valides
 
-PROFONDEUR_MINMAX = 7
+depth_MINMAX = 7
 
 def eval_fonction(matrice, joueur):
     score = 0
@@ -31,61 +29,63 @@ def eval_fonction(matrice, joueur):
                 score += 100
             elif fenetre.count(joueur) == 3 and fenetre.count(0) == 1:
                 score += 10
+                
             if fenetre.count(adversaire) == 3 and fenetre.count(0) == 1:
                 score -= 10
 
     return score
 
-def minmax_alpha_beta(matrice, profondeur, alpha, beta, maximizing, joueur):
-    colonnes_valides = coups_valides(matrice)
-    terminal = (
-        verif_gagnant(matrice, 2)
-        or verif_gagnant(matrice, 1)
-        or len(colonnes_valides) == 0
-        or profondeur == 0
-    )
+def minmax_alpha_beta(matrice, depth, alpha, beta, maximizing, joueur):
+    valid = coups_valides(matrice)
+    terminal = verif_gagnant(matrice, 2) or verif_gagnant(matrice, 1) or len(valid) == 0 or depth == 0
 
     if terminal:
         if verif_gagnant(matrice, 2):
-            return (None, 100000 + profondeur * 100)
+            return (None, 100000 + depth * 100)
         elif verif_gagnant(matrice, 1):
-            return (None, -10000 - profondeur * 100)
+            return (None, -10000 - depth * 100)
         else:
             return (None, eval_fonction(matrice, 2))
 
     if maximizing:
         max_eval = -float("inf")
-        meilleure_colonne = random.choice(colonnes_valides) if colonnes_valides else None
-        for colonne in colonnes_valides:
+        best_col = random.choice(valid) if valid else None
+       
+        for colonne in valid:
             ligne = drop_piece(matrice, colonne, 2)
             if ligne is None:
                 continue
-            score = minmax_alpha_beta(
-                matrice, profondeur - 1, alpha, beta, False, joueur
-            )[1]
+           
+            score = minmax_alpha_beta(matrice, depth - 1, alpha, beta, False, joueur)[1]
             matrice[ligne][colonne] = 0
+           
             if score > max_eval:
                 max_eval = score
-                meilleure_colonne = colonne
+                best_col = colonne
+          
             alpha = max(alpha, score)
             if beta <= alpha:
                 break
-        return (meilleure_colonne, max_eval)
+        
+        return (best_col, max_eval)
     else:
         min_eval = float("inf")
-        meilleure_colonne = random.choice(colonnes_valides) if colonnes_valides else None
-        for colonne in colonnes_valides:
+        best_col = random.choice(valid) if valid else None
+        
+        for colonne in valid:
             ligne = drop_piece(matrice, colonne, 1)
             if ligne is None:
                 continue
-            score = minmax_alpha_beta(
-                matrice, profondeur - 1, alpha, beta, True, joueur
-            )[1]
-            matrice[ligne][colonne] = 0
+      
+            score = minmax_alpha_beta(matrice, depth - 1, alpha, beta, True, joueur)[1]
+                matrice[ligne][colonne] = 0
+         
             if score < min_eval:
                 min_eval = score
-                meilleure_colonne = colonne
+                best_col = colonne
+         
             beta = min(beta, score)
             if beta <= alpha:
                 break
-        return (meilleure_colonne, min_eval)
+
+        return (best_col, min_eval)
