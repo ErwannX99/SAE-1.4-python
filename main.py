@@ -94,4 +94,3 @@ while True:
     joueur = 2 if joueur == 1 else 1
 
 robot.close_connection()
-#test
