@@ -1,37 +1,41 @@
 from pyniryo import *
+
 import time
-import random 
+import random
 import serial
 
-#lacher la pièce
-def drop_piece(matrice, col, piece):
-    for row in range(5, -1, -1):
-        if matrice[row][col] == 0:
-            matrice[row][col] = piece
-            return row
+def drop_piece(matrice, colonne, piece):
+    for ligne in range(5, -1, -1):
+        if matrice[ligne][colonne] == 0:
+            matrice[ligne][colonne] = piece
+            return ligne
     return None
 
 def verif_gagnant(matrice, joueur):
-    for r in range(6):
-        for c in range(4):
-            if all(matrice[r][c + i] == joueur for i in range(4)):
+    # lignes horizontales
+    for ligne in range(6):
+        for colonne in range(4):
+            if all(matrice[ligne][colonne + i] == joueur for i in range(4)):
                 return True
-    
-    for c in range(7):
-        for r in range(3):
-            if all(matrice[r + i][c] == joueur for i in range(4)):
+
+    # colonnes verticales
+    for colonne in range(7):
+        for ligne in range(3):
+            if all(matrice[ligne + i][colonne] == joueur for i in range(4)):
                 return True
-    
-    for r in range(3):
-        for c in range(4):
-            if all(matrice[r + i][c + i] == joueur for i in range(4)):
+
+    # diagonales montantes
+    for ligne in range(3):
+        for colonne in range(4):
+            if all(matrice[ligne + i][colonne + i] == joueur for i in range(4)):
                 return True
-    
-    for r in range(3, 6):
-        for c in range(4):
-            if all(matrice[r - i][c + i] == joueur for i in range(4)):
+
+    # diagonales descendantes
+    for ligne in range(3, 6):
+        for colonne in range(4):
+            if all(matrice[ligne - i][colonne + i] == joueur for i in range(4)):
                 return True
-    
+
     return False
 
 def affichage(matrice):
@@ -42,7 +46,6 @@ def affichage(matrice):
 
 def coups_valides(matrice):
     center = 3
-    cols = [c for c in range(7) if matrice[0][c] == 0]
-    cols.sort(key=lambda c: abs(c - center))
-    return cols
-
+    colonnes = [colonne for colonne in range(7) if matrice[0][colonne] == 0]
+    colonnes.sort(key=lambda colonne: abs(colonne - center))
+    return colonnes
