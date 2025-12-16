@@ -29,29 +29,29 @@ while True:
                 texte_recue = int(donnee_cm.decode("utf-8").strip())
                 if not texte_recue:
                     continue
-                s = int(texte_recue)
+                distance = int(texte_recue)
             except ValueError:
                 continue
             
-            if s==3:
+            if distance==3:
                 col = 0
                 robot.play_sound('connected.wav')
-            elif s==7:
+            elif distance==7:
                 col = 1
                 robot.play_sound('connected.wav')
-            elif s==11:
+            elif distance==11:
                 col = 2
                 robot.play_sound('connected.wav')
-            elif s==14:
+            elif distance==14:
                 col = 3
                 robot.play_sound('connected.wav')
-            elif s==18:
+            elif distance==18:
                 col = 4
                 robot.play_sound('connected.wav')
-            elif s==22:
+            elif distance==22:
                 col = 5
                 robot.play_sound('connected.wav')
-            elif s==26:
+            elif distance==26:
                 col = 6
                 robot.play_sound('connected.wav')
             else :
