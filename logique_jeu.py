@@ -1,8 +1,9 @@
 from pyniryo import *
 import time
-import random
+import random 
 import serial
 
+#lacher la pièce
 def drop_piece(matrice, col, piece):
     for row in range(5, -1, -1):
         if matrice[row][col] == 0:
@@ -44,3 +45,4 @@ def coups_valides(matrice):
     cols = [c for c in range(7) if matrice[0][c] == 0]
     cols.sort(key=lambda c: abs(c - center))
     return cols
+
