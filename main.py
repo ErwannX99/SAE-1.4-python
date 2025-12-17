@@ -1,13 +1,12 @@
-from pyniryo import *
-
+from pyniryo import *       # Importation des bibiloithèques
 import time
 import random
 import serial
 
-from logique_jeu import drop_piece, verif_gagnant, affichage
+from logique_jeu import drop_piece, verif_gagnant, affichage        # Importation des fonctions cree sur les autres codes
 from robot import port_serie, robot, pick_robot_piece
 
-matrice = [[0 for _ in range(7)] for _ in range(6)]
+matrice = [[0 for _ in range(7)] for _ in range(6)]                 # Creation de la matrice pour visualiser le jeu
 
 joueur = 1
 
@@ -37,9 +36,9 @@ while True:
             except ValueError:
                 continue
 
-            if distance == 3:
-                colonne = 0
-                robot.play_sound('connected.wav')
+            if distance == 3:                       # Verifie la distance pour chaque colonne     
+                colonne = 0                         # Numero de la colonne 
+                robot.play_sound('connected.wav')   # Joue un son de confirmation
             elif distance == 7:
                 colonne = 1
                 robot.play_sound('connected.wav')
