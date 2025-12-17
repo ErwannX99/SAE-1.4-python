@@ -23,16 +23,15 @@ while True:                                                         # Choix du m
 while True:
     affichage(matrice)
 
-    if joueur == 1:
+    if joueur == 1:                                             # permet de lancer la lecture des distances uniquement si c'est au tour du joueur
         port_serie.reset_input_buffer()
 
         while True:
             donnee_cm = port_serie.readline()
             try:
-                texte_recue = int(donnee_cm.decode("utf-8").strip())
-                if not texte_recue:
+                distance = int(donnee_cm.decode("utf-8").strip())    #Retire le prefix utf-8 et le transforme en int pour une lecture correcte
+                if not distance:                                     # Si aucune donné n'est reçue, recommence la boucle
                     continue
-                distance = int(texte_recue)
             except ValueError:
                 continue
 
