@@ -1,6 +1,6 @@
 from pyniryo import *       # Importation des bibiloithèques
 import time
-import random               # importation
+import random               
 import serial
 #test
 from logique_jeu import drop_piece, verif_gagnant, affichage        # Importation des fonctions cree sur les autres codes
