@@ -10,11 +10,11 @@ matrice = [[0 for _ in range(7)] for _ in range(6)]                 # Creation d
 
 joueur = 1
 
-while True:                                                         # Choix du mode 
+while True:                                                         
     print("Choisissez le mode du robot (1 = aléatoire, 2 = minmax): ")
     try:
         mode_robot = int(input())
-        if not (mode_robot == 1 or mode_robot == 2):                # Recomence la boucle si une valeur autre que 1 ou 2 est entrée
+        if not (mode_robot == 1 or mode_robot == 2):                
             raise ValueError
         break
     except ValueError:
