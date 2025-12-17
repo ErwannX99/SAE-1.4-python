@@ -1,5 +1,5 @@
 from pyniryo import *       # Importation des bibiloithèques
-import time
+import time                 #laisser le temps au robot de stabiliser sa position
 import random               
 import serial
 
