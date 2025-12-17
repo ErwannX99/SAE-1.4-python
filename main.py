@@ -59,12 +59,12 @@ while True:
             else:
                 continue
 
-            if not (0 <= colonne < 7):
+            if not (0 <= colonne < 7):              # Verifie si le entrée colonne n'est pas hors limite
                 print("Colonne hors limite.")
                 robot.play_sound('error.wav')
                 continue
 
-            if matrice[0][colonne] != 0:
+            if matrice[0][colonne] != 0:            # Verifie si la colonne est pleine
                 print("Colonne pleine.")
                 robot.play_sound('error.wav')
                 port_serie.reset_input_buffer()
@@ -72,14 +72,14 @@ while True:
 
             break
 
-        drop_piece(matrice, colonne, joueur)
+        drop_piece(matrice, colonne, joueur)        # Place la piece dans la matrice selon la colonne choisie par le joueur
 
     else:
-        colonne = pick_robot_piece(matrice, mode_robot)
-        drop_piece(matrice, colonne, joueur)
+        colonne = pick_robot_piece(matrice, mode_robot)  # La colonne choisie par le robot selon le mode et la fonction appelée
+        drop_piece(matrice, colonne, joueur)       # Place la piece dans la matrice selon la colonne choisie par le robot
 
-    if verif_gagnant(matrice, joueur):
-        affichage(matrice)
+    if verif_gagnant(matrice, joueur):              # Verifie si la matrice est une matrice gagnante
+        affichage(matrice)                          # Affiche la matrice finale
         print(f"Le joueur {joueur} gagne !")
         if joueur == 1:
             robot.play_sound('ready.wav')
@@ -88,11 +88,11 @@ while True:
         robot.release_with_tool()
         break
 
-    if all(matrice[0][i] != 0 for i in range(7)):
-        affichage(matrice)
-        print("Égalité, la grille est pleine.")
-        break
+    if all(matrice[0][i] != 0 for i in range(7)): # Verifie si la matrice est pleine
+        affichage(matrice)                        # Affiche la matrice finale
+        print("Égalité, la grille est pleine.")   # Annonce l'égalité
+        break                                     # Termine la boucle
 
-    joueur = 2 if joueur == 1 else 1
+    joueur = 2 if joueur == 1 else 1              
 
 robot.close_connection()
