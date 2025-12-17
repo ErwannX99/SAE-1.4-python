@@ -11,7 +11,7 @@ matrice = [[0 for _ in range(7)] for _ in range(6)]                 # Creation d
 joueur = 1
 
 while True:
-    print("Choisissez le mode du robot (1 = aléatoire, 2 = minmax): ")
+    print("Choisissez le mode du robot (1 = aléatoire, 2 = minmax): ") 
     try:
         mode_robot = int(input())
         if not (mode_robot == 1 or mode_robot == 2):
