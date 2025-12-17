@@ -1,6 +1,6 @@
 from pyniryo import *       # Importation des bibiloithèques
 import time                 #laisser le temps au robot de stabiliser sa position
-import random               
+import random               #permet de jouer au hasard
 import serial
 
 from logique_jeu import drop_piece, verif_gagnant, affichage        # Importation des fonctions cree sur les autres codes
