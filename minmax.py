@@ -3,7 +3,7 @@ import time
 import random
 import serial
 from logique_jeu import drop_piece, verif_gagnant, coups_valides
-
+#test
 depth_MINMAX = 7
 
 def eval_fonction(matrice, joueur):
