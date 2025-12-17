@@ -92,6 +92,5 @@ while True:
         break
     
     joueur = 2 if joueur == 1 else 1
-#test2 
+
 robot.close_connection()
-#test
