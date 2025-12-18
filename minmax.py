@@ -2,7 +2,7 @@ from pyniryo import *
 import time
 import random
 import serial
-from logique_jeu import drop_piece, verif_gagnant, coups_valides
+from logique_jeu import gravite_piece, verif_gagnant, coups_valides
 
 depth_MINMAX = 7
 
@@ -52,7 +52,7 @@ def minmax_alpha_beta(matrice, depth, alpha, beta, maximizing, joueur):
         best_col = random.choice(valid) if valid else None
        
         for colonne in valid:
-            ligne = drop_piece(matrice, colonne, 2)
+            ligne = gravite_piece(matrice, colonne, 2)
             if ligne is None:
                 continue
            
@@ -73,12 +73,12 @@ def minmax_alpha_beta(matrice, depth, alpha, beta, maximizing, joueur):
         best_col = random.choice(valid) if valid else None
         
         for colonne in valid:
-            ligne = drop_piece(matrice, colonne, 1)
+            ligne = gravite_piece(matrice, colonne, 1)
             if ligne is None:
                 continue
       
             score = minmax_alpha_beta(matrice, depth - 1, alpha, beta, True, joueur)[1]
-                matrice[ligne][colonne] = 0
+            matrice[ligne][colonne] = 0
          
             if score < min_eval:
                 min_eval = score

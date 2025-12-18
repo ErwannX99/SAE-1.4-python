@@ -3,7 +3,7 @@ import time
 import random
 import serial
 
-from logique_jeu import drop_piece, verif_gagnant, affichage        # Importation des fonctions cree sur les autres codes
+from logique_jeu import gravite_piece, verif_gagnant, affichage        # Importation des fonctions cree sur les autres codes
 from robot import port_serie, robot, pick_robot_piece
 
 matrice = [[0 for _ in range(7)] for _ in range(6)]                 # Creation de la matrice pour visualiser le jeu
@@ -73,11 +73,11 @@ while True:
 
             break
 
-        drop_piece(matrice, colonne, joueur)
+        gravite_piece(matrice, colonne, joueur)
 
     else:
         colonne = pick_robot_piece(matrice, mode_robot)
-        drop_piece(matrice, colonne, joueur)
+        gravite_piece(matrice, colonne, joueur)
 
     if verif_gagnant(matrice, joueur):
         affichage(matrice)
