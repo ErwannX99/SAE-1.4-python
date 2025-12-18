@@ -1,20 +1,23 @@
-from pyniryo import *       # Importation des bibiloithèques
+# Importation des bibiloithèques
+from pyniryo import *       
 import time
-import random
+import random               
 import serial
 
 from logique_jeu import gravite_piece, verif_gagnant, affichage        # Importation des fonctions cree sur les autres codes
 from robot import port_serie, robot, pick_robot_piece
 
-matrice = [[0 for _ in range(7)] for _ in range(6)]                 # Creation de la matrice pour visualiser le jeu
+# Creation de la matrice pour visualiser le jeu
+matrice = [[0 for _ in range(7)] for _ in range(6)]                
 
 joueur = 1
 
-while True:
+# Choix du mode 
+while True:                                                         
     print("Choisissez le mode du robot (1 = aléatoire, 2 = minmax): ")
     try:
         mode_robot = int(input())
-        if not (mode_robot == 1 or mode_robot == 2):
+        if not (mode_robot == 1 or mode_robot == 2):                # Recomence la boucle si une valeur autre que 1 ou 2 est entrée
             raise ValueError
         break
     except ValueError:
@@ -23,16 +26,15 @@ while True:
 while True:
     affichage(matrice)
 
-    if joueur == 1:
+    if joueur == 1:                                             # permet de lancer la lecture des distances uniquement si c'est au tour du joueur
         port_serie.reset_input_buffer()
 
         while True:
-            donnee_cm = port_serie.readline()
+            donnee_cm = port_serie.readline()                        # Lecture de la distance envoyer sur le port série
             try:
-                texte_recue = int(donnee_cm.decode("utf-8").strip())
-                if not texte_recue:
+                distance = int(donnee_cm.decode("utf-8").strip())    #Retire le prefix utf-8 et le transforme en int pour une lecture correcte
+                if not distance:                                     # Si aucune donné n'est reçue, recommence la boucle
                     continue
-                distance = int(texte_recue)
             except ValueError:
                 continue
 
@@ -59,13 +61,15 @@ while True:
                 robot.play_sound('connected.wav')
             else:
                 continue
-
-            if not (0 <= colonne < 7):
+            
+            # Verifie si le entrée colonne n'est pas hors limite    
+            if not (0 <= colonne < 7):              
                 print("Colonne hors limite.")
                 robot.play_sound('error.wav')
                 continue
 
-            if matrice[0][colonne] != 0:
+            # Verifie si la colonne est pleine
+            if matrice[0][colonne] != 0:           
                 print("Colonne pleine.")
                 robot.play_sound('error.wav')
                 port_serie.reset_input_buffer()
@@ -73,27 +77,29 @@ while True:
 
             break
 
-        gravite_piece(matrice, colonne, joueur)
+        drop_piece(matrice, colonne, joueur)
 
     else:
         colonne = pick_robot_piece(matrice, mode_robot)
-        gravite_piece(matrice, colonne, joueur)
+        drop_piece(matrice, colonne, joueur)
 
-    if verif_gagnant(matrice, joueur):
-        affichage(matrice)
-        print(f"Le joueur {joueur} gagne !")
-        if joueur == 1:
+# Verifie si la matrice est une matrice gagnante
+    if verif_gagnant(matrice, joueur):              #Selectionne la matrice a regarder et le joueur à verifier
+        affichage(matrice)                          # Affiche la matrice finale
+        print(f"Le joueur {joueur} gagne !")        
+        if joueur == 1:                             # Joue un son différent selon le gagnant
             robot.play_sound('ready.wav')
         if joueur == 2:
             robot.play_sound('error.wav')
         robot.release_with_tool()
         break
 
-    if all(matrice[0][i] != 0 for i in range(7)):
-        affichage(matrice)
-        print("Égalité, la grille est pleine.")
-        break
+# Verifie si la matrice est pleine
+    if all(matrice[0][i] != 0 for i in range(7)):       
+        affichage(matrice)                              
+        print("Égalité, la grille est pleine.")         
+        break                                           
 
-    joueur = 2 if joueur == 1 else 1
+    joueur = 2 if joueur == 1 else 1              
 
 robot.close_connection()
