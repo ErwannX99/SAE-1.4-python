@@ -62,13 +62,15 @@ while True:
                 robot.play_sound('connected.wav')
             else:
                 continue
-
-            if not (0 <= colonne < 7):              # Verifie si le entrée colonne n'est pas hors limite
+            
+            # Verifie si le entrée colonne n'est pas hors limite    
+            if not (0 <= colonne < 7):              
                 print("Colonne hors limite.")
                 robot.play_sound('error.wav')
                 continue
 
-            if matrice[0][colonne] != 0:            # Verifie si la colonne est pleine
+            # Verifie si la colonne est pleine
+            if matrice[0][colonne] != 0:           
                 print("Colonne pleine.")
                 robot.play_sound('error.wav')
                 port_serie.reset_input_buffer()
@@ -82,7 +84,8 @@ while True:
         colonne = pick_robot_piece(matrice, mode_robot)     # La colonne choisie par le robot selon le mode et la fonction appelée
         drop_piece(matrice, colonne, joueur)                # Place la piece dans la matrice selon la colonne choisie par le robot
 
-    if verif_gagnant(matrice, joueur):              # Verifie si la matrice est une matrice gagnante
+# Verifie si la matrice est une matrice gagnante
+    if verif_gagnant(matrice, joueur):              #Selectionne la matrice a regarder et le joueur à verifier
         affichage(matrice)                          # Affiche la matrice finale
         print(f"Le joueur {joueur} gagne !")        
         if joueur == 1:                             # Joue un son différent selon le gagnant
@@ -92,7 +95,8 @@ while True:
         robot.release_with_tool()
         break
 
-    if all(matrice[0][i] != 0 for i in range(7)):       # Verifie si la matrice est pleine
+# Verifie si la matrice est pleine
+    if all(matrice[0][i] != 0 for i in range(7)):       
         affichage(matrice)                              
         print("Égalité, la grille est pleine.")         
         break                                           
