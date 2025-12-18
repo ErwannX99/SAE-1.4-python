@@ -77,11 +77,11 @@ while True:
 
             break
 
-        drop_piece(matrice, colonne, joueur)
+        gravite_piece(matrice, colonne, joueur)
 
     else:
         colonne = pick_robot_piece(matrice, mode_robot)
-        drop_piece(matrice, colonne, joueur)
+        gravite_piece(matrice, colonne, joueur)
 
 # Verifie si la matrice est une matrice gagnante
     if verif_gagnant(matrice, joueur):              #Selectionne la matrice a regarder et le joueur à verifier
