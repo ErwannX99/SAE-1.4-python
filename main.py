@@ -1,16 +1,20 @@
-from pyniryo import *       # Importation des bibiloithèques
-import time                 #laisser le temps au robot de stabiliser sa position
-import random               #permet de jouer au hasard
+# Importation des bibiloithèques
+from pyniryo import *       
+import time
+import random               
 import serial
 
-from logique_jeu import drop_piece, verif_gagnant, affichage        # Importation des fonctions cree sur les autres codes
+# Importation des fonctions cree sur les autres codes
+from logique_jeu import drop_piece, verif_gagnant, affichage        
 from robot import port_serie, robot, pick_robot_piece
 
-matrice = [[0 for _ in range(7)] for _ in range(6)]                 # Creation de la matrice pour visualiser le jeu
+# Creation de la matrice pour visualiser le jeu
+matrice = [[0 for _ in range(7)] for _ in range(6)]                
 
 joueur = 1
 
-while True:                                                         # Choix du mode 
+# Choix du mode 
+while True:                                                         
     print("Choisissez le mode du robot (1 = aléatoire, 2 = minmax): ")
     try:
         mode_robot = int(input())
@@ -27,7 +31,7 @@ while True:
         port_serie.reset_input_buffer()
 
         while True:
-            donnee_cm = port_serie.readline()
+            donnee_cm = port_serie.readline()                        # Lecture de la distance envoyer sur le port série
             try:
                 distance = int(donnee_cm.decode("utf-8").strip())    #Retire le prefix utf-8 et le transforme en int pour une lecture correcte
                 if not distance:                                     # Si aucune donné n'est reçue, recommence la boucle
@@ -75,23 +79,23 @@ while True:
         drop_piece(matrice, colonne, joueur)        # Place la piece dans la matrice selon la colonne choisie par le joueur
 
     else:
-        colonne = pick_robot_piece(matrice, mode_robot)  # La colonne choisie par le robot selon le mode et la fonction appelée
-        drop_piece(matrice, colonne, joueur)       # Place la piece dans la matrice selon la colonne choisie par le robot
+        colonne = pick_robot_piece(matrice, mode_robot)     # La colonne choisie par le robot selon le mode et la fonction appelée
+        drop_piece(matrice, colonne, joueur)                # Place la piece dans la matrice selon la colonne choisie par le robot
 
     if verif_gagnant(matrice, joueur):              # Verifie si la matrice est une matrice gagnante
         affichage(matrice)                          # Affiche la matrice finale
-        print(f"Le joueur {joueur} gagne !")
-        if joueur == 1:
+        print(f"Le joueur {joueur} gagne !")        
+        if joueur == 1:                             # Joue un son différent selon le gagnant
             robot.play_sound('ready.wav')
         if joueur == 2:
             robot.play_sound('error.wav')
         robot.release_with_tool()
         break
 
-    if all(matrice[0][i] != 0 for i in range(7)): # Verifie si la matrice est pleine
-        affichage(matrice)                        # Affiche la matrice finale
-        print("Égalité, la grille est pleine.")   # Annonce l'égalité
-        break                                     # Termine la boucle
+    if all(matrice[0][i] != 0 for i in range(7)):       # Verifie si la matrice est pleine
+        affichage(matrice)                              
+        print("Égalité, la grille est pleine.")         
+        break                                           
 
     joueur = 2 if joueur == 1 else 1              
 
