@@ -1,7 +1,4 @@
 from pyniryo import *
-import time
-import random
-import serial
 
 def gravite_piece(matrice, colonne, piece):
     """Dépose une pièce dans la colonne donnée.

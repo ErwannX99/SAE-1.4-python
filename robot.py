@@ -1,7 +1,6 @@
 from pyniryo import *
 import time
 import random
-import serial
 from logique_jeu import gravite_piece, coups_valides
 from minmax import minmax_alpha_beta, PROFONDEUR_MINMAX
 
