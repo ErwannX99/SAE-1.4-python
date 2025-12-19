@@ -2,8 +2,11 @@
 code permetant a jjouer au puissance 4 avec un bras nirio de façon autonome 
 
 
-biblioteque utiliser:
-
+# biblioteques utilisées :
+        pynirio --> va permetre d'utiliser les commande pour controler le nyrio 
+        time    --> utilisé sur une seul instance pour une 
+        random  --> utilisé pour le mode random de jeu qui selectionne une colonne aleatoirement pour jouer
+        serial  --> sert pour la lecture de la distance provenant du port serie envoyer par le capteur ultrason
 
 # explication du programme:
 
