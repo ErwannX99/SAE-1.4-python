@@ -99,4 +99,11 @@ Permet de savoir si un coup est valide ou non le main apres chaque coup de l'ord
 ex: si un colonne est pleine le coup va etre annulé et on demande ou joueur de rejouer
 Et aussi le programme va trier les colonnes restantes selon leurs proximité au center ce qui va aider le programme minmax
 
+## Amélioration : Changement de nom de variable et de fonction
+### Changement des noms de variables et de fonction pour une meilleur compréhension (dans tout les programmes):
+c -> colonne 
+col -> colonne 
+r -> ligne 
+row -> ligne 
+drop_piece -> gravite_piece
 
