@@ -76,9 +76,11 @@ Maintenir DEPTH_MINMAX entre 6 et 8 pour le temps réel
 
 # robot :
 
+## objectif :
+controle des mouvement du nirio avec des positions generalisées 
 
-
-
+## Spécification :
+    
 
 
 # logique_jeu :
