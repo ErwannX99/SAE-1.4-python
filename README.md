@@ -23,18 +23,13 @@ qui elle est la boucle infini du fonctionnement general et qui appelle les autre
     amelioration de la visibiliter par des variables rennomées 
     supression de repetition dans le programme evitant d'utiliser des ressourse inutile
 
-# recomendation
-//
-
-
-minmax.py :
-## Algorithme de décision Minimax 
-# Algorithme d'anticipation et de prise de décision pour des jeux 
+# Algorithme de décision Minimax 
+## Algorithme d'anticipation et de prise de décision pour des jeux 
 Objectif: Anticiper les coups dans la profondeur indiqué en utilisant 
 une évaluation des coups possible ainsi qu'une exploration d'un arbre de possibilité 
 des coups jouables 
 
-# Spécification
+## Spécification
 Une variable DEPTH_MINMAX (profondeur du minimax) sert à définir la profondeur souhaité.
 Cette variable prends un entier en entrée 
 
@@ -48,7 +43,7 @@ Fonction d'anticipation (minimax_alpha_beta)
 Algorithme simulant l'alternance des coups entre lui et son adversaire afin d'anticiper
 les coups et de prendre la décision du pion à jouer 
 
-# Optimisation 
+## Optimisation 
 
 1.
 Ajout d'un élagage alpha et bêta afin de mesurer son coups et celui de son adversaire, 
@@ -66,7 +61,7 @@ la simulation est effectué directement sur la grille existante (toujours de man
 
 --> évite la copie inutile de grille, parfois lourde optimisant ainsi les ressources de l'ordinateur
 
-# Recommendation
+## Recommendation
 
 Ne pas affecter à DEPTH_MINMAX une entrée au dessus de 10
 --> Algorithme quasiment imbattable au delà de ce seuil, cela n'est donc pas nécessaire
