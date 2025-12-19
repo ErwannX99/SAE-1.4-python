@@ -5,19 +5,26 @@ code permetant a jjouer au puissance 4 avec un bras nirio de façon autonome
 biblioteque utiliser:
 
 
-#explication du programme:
+# explication du programme:
 
 main:
-main sert a controler toute les autre parties du codes et appeller les fonctions necessaire.
+# objectif : 
+conntroler les partition du code par une partie central qui appelle les fonction necessaire
+
+# specification
+main fonctionne sur plusieur fontion infini (while true) pementant un fonctionnement continue 
+premier while true sert pour le choix de la difficulter avant de passer sur la seconde boucle
+qui elle est la boucle infini du fonctionnement general et qui appelle les autre fonction 
+
+# optimisation :
+    amelioration de la visibiliter par des variables rennomées 
+    supression de repetition dans le programme evitant d'utiliser des ressourse inutile
+
+# recomendation
+//
 
 
-
-logique_jeu:
-
-
-robot:
-
-
+minmax.py :
 ## Algorithme de décision Minimax 
 # Algorithme d'anticipation et de prise de décision pour des jeux 
 Objectif: Anticiper les coups dans la profondeur indiqué en utilisant 
@@ -66,3 +73,13 @@ Ne pas affecter à DEPTH_MINMAX une entrée au dessus de 10
 Maintenir DEPTH_MINMAX entre 6 et 8 pour le temps réel
 --> L'algorithme joue très rapidement (le premier coup peut prendre 10secondes puis temps réel)
 --> Difficulté haute, algorithme pas imbattable mais difficilement 
+
+
+
+# robot :
+
+
+
+
+
+# logique_jeu :
