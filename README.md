@@ -72,12 +72,16 @@ Maintenir DEPTH_MINMAX entre 6 et 8 pour le temps réel
 --> L'algorithme joue très rapidement (le premier coup peut prendre 10secondes puis temps réel)
 --> Difficulté haute, algorithme pas imbattable mais difficilement 
 
+## Version
+v1.0: Minimax fonctionnel, ne joue pas de manière purement intelligente car ne calcule pas les fenêtre diagonale 
+v1.1: Ajout des fenêtres diagonales
+
 
 
 # robot :
 
 ## objectif :
-controle des mouvement du nirio avec des positions generalisées 
+controle des mouvement du niryo avec des positions generalisées 
 
 ## Spécification :
     hauteur tuple des hauteur
