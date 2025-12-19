@@ -2,12 +2,23 @@ from pyniryo import *
 import time
 import random
 import serial
-from logique_jeu import drop_piece, verif_gagnant, coups_valides
-#test
-depth_MINMAX = 7
+from logique_jeu import drop_piece, verif_gagnant, coups_valides  #impportations des différentes parties du programme
+#importation des bibliothèques nécessaire au fonctionnement 
+depth_MINMAX = 7 #nombre de coup calculer à l'avance
 
-def eval_fonction(matrice, joueur):
-    score = 0
+
+def eval_fonction(matrice, joueur): 
+    """ 
+    Evalue la qualité de l'état du plateau pour le joueur
+    
+    Variable:
+        matrice : (list): Grille 2D représentant le jeu puissance 4 sous forme de matrice
+        joueur : (int): Identifiant du joueur  
+
+    Returns:
+        Score: (int) : Score calculées 
+    """
+    score = 0 
     adversaire = 2 if joueur == 1 else 1
 
     # lignes horizontales
@@ -35,7 +46,26 @@ def eval_fonction(matrice, joueur):
 
     return score
 
-def minmax_alpha_beta(matrice, depth, alpha, beta, maximizing, joueur):
+
+def minmax_alpha_beta(matrice, depth, alpha, beta, maximizing, joueur): #fonctionnement du minimax & opitimisation
+    """
+    Execute minimax pour trouver le coup le plus pertinent
+    Simule les coups avec une alternance joueur adversaire pour trouver le coup donnant 
+    la plus grande chance de victoire 
+    
+    Variable:
+        matrice : (list) : Grille 2D du puissance 4 
+        depth : (int) : Profondeur (nombre de coup calculé à l'avance )
+        alpha: (float) : Valeur du meilleur score de l'algo
+        beta: (float) : Valeur du pire score de l'adversaire
+        maximizing: (bool) : True si l'algo doit maximiser le score, False dans le cas contraire
+        joueur : (int) : identifiant du joueur donc le tour est simulé 
+
+    Returns: 
+        best_col: (int où None): indice de la meilleur colonne a jouer (none si fin du jeu)
+        score: (float) : score de l'évaluation  de la position atteinte 
+    """
+    
     valid = coups_valides(matrice)
     terminal = verif_gagnant(matrice, 2) or verif_gagnant(matrice, 1) or len(valid) == 0 or depth == 0
 
@@ -78,7 +108,7 @@ def minmax_alpha_beta(matrice, depth, alpha, beta, maximizing, joueur):
                 continue
       
             score = minmax_alpha_beta(matrice, depth - 1, alpha, beta, True, joueur)[1]
-                matrice[ligne][colonne] = 0
+            matrice[ligne][colonne] = 0
          
             if score < min_eval:
                 min_eval = score

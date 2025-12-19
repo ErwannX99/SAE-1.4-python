@@ -1,10 +1,9 @@
-# Importer les bibliothèques nécessaires au projet ainsi que les fonctions qui ont été créées dans d'autres fichiers
-from pyniryo import *  
-import time  
-import random  
-import serial  
-from logique_jeu import drop_piece, coups_valides  
-from minmax import minmax_alpha_beta, PROFONDEUR_MINMAX  
+from pyniryo import *
+import time
+import random
+import serial
+from logique_jeu import gravite_piece, coups_valides
+from minmax import minmax_alpha_beta, PROFONDEUR_MINMAX
 
 port_serie = serial.Serial("COM3", baudrate=9600, timeout=2) # Ouverture de la liaison série
 

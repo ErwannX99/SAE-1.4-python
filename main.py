@@ -4,8 +4,7 @@ import time
 import random               
 import serial
 
-# Importation des fonctions cree sur les autres codes
-from logique_jeu import drop_piece, verif_gagnant, affichage        
+from logique_jeu import gravite_piece, verif_gagnant, affichage        # Importation des fonctions cree sur les autres codes
 from robot import port_serie, robot, pick_robot_piece
 
 # Creation de la matrice pour visualiser le jeu
@@ -78,11 +77,11 @@ while True:
 
             break
 
-        drop_piece(matrice, colonne, joueur)        # Place la piece dans la matrice selon la colonne choisie par le joueur
+        gravite_piece(matrice, colonne, joueur)
 
     else:
-        colonne = pick_robot_piece(matrice, mode_robot)     # La colonne choisie par le robot selon le mode et la fonction appelée
-        drop_piece(matrice, colonne, joueur)                # Place la piece dans la matrice selon la colonne choisie par le robot
+        colonne = pick_robot_piece(matrice, mode_robot)
+        gravite_piece(matrice, colonne, joueur)
 
 # Verifie si la matrice est une matrice gagnante
     if verif_gagnant(matrice, joueur):              #Selectionne la matrice a regarder et le joueur à verifier
