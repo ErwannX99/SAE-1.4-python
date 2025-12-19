@@ -15,7 +15,7 @@ main:
 conntroler les partition du code par une partie central qui appelle les fonction necessaire
 
 # specification
-main fonctionne sur plusieur fontion infini (while true) pementant un fonctionnement continue 
+main fonctionne sur plusieurs fonction infini (while true) pemettant un fonctionnement continu, 
 premier while true sert pour le choix de la difficulter avant de passer sur la seconde boucle
 qui elle est la boucle infini du fonctionnement general et qui appelle les autre fonction 
 
