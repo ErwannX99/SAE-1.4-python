@@ -1,5 +1,4 @@
 from pyniryo import *
-#test test test
 import time
 import random
 import serial
