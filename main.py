@@ -52,11 +52,12 @@ while True:
                 colonne = 5
             elif distance == 26:
                 colonne = 6
-            else:
-                continue
             
             if colonne <= 6 :
                 robot.play_sound('connected.wav')
+            
+            else:
+                continue
 
             # Vérifie si le entrée colonne n'est pas hors limite    
             if not (0 <= colonne < 7):              
