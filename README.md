@@ -10,16 +10,16 @@ code permetant a jjouer au puissance 4 avec un bras nirio de façon autonome
 
 # explication du programme:
 
-main:
-# objectif : 
+# main:
+## objectif : 
 conntroler les partition du code par une partie central qui appelle les fonction necessaire
 
-# specification
+## specification
 main fonctionne sur plusieurs fonction infini (while true) pemettant un fonctionnement continu, 
 premier while true sert pour le choix de la difficulter avant de passer sur la seconde boucle
 qui elle est la boucle infini du fonctionnement general et qui appelle les autre fonction 
 
-# optimisation :
+## optimisation :
     amelioration de la visibiliter par des variables rennomées 
     supression de repetition dans le programme evitant d'utiliser des ressourse inutile
 
