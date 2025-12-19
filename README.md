@@ -82,3 +82,21 @@ Maintenir DEPTH_MINMAX entre 6 et 8 pour le temps réel
 
 
 # logique_jeu :
+
+## Objectif : Faire toute la logique du jeu du puissance 4
+
+### def gravite_piece(matrice, colonne, piece):
+Permet de quand on choisit une colonne faire que la pièce aille directement le plus bas possible comme si elles tombaient
+
+### def verif_gagnant(matrice, joueur):
+Permet de savoir quand un joueur a gagner en regardant toutes les colonnes si un joueur a gagné True est return
+
+### def affichage(matrice):
+C'est lui qui va afficher la matrice dans le terminal a chaque coups pour suivre le jeu depuis l'ordinateur
+
+### def coups_valides(matrice):
+Permet de savoir si un coup est valide ou non le main apres chaque coup de l'ordi et du joueur va regarder si le coup est possible 
+ex: si un colonne est pleine le coup va etre annulé et on demande ou joueur de rejouer
+Et aussi le programme va trier les colonnes restantes selon leurs proximité au center ce qui va aider le programme minmax
+
+
