@@ -7,6 +7,8 @@ import serial
 from logique_jeu import gravite_piece, verif_gagnant, affichage        # Importation des fonctions cree sur les autres codes
 from robot import port_serie, robot, pick_robot_piece
 
+port_serie = serial.Serial("COM3", baudrate=9600, timeout=2) # Ouverture de la liaison série
+
 # Creation de la matrice pour visualiser le jeu
 matrice = [[0 for _ in range(7)] for _ in range(6)]                
 

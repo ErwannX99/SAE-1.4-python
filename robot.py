@@ -5,7 +5,6 @@ import serial
 from logique_jeu import gravite_piece, coups_valides
 from minmax import minmax_alpha_beta, PROFONDEUR_MINMAX
 
-port_serie = serial.Serial("COM3", baudrate=9600, timeout=2) # Ouverture de la liaison série
 
 # Connexion au robot Niryo, calibration automatique des axes et détection de l'outil monté
 robot = NiryoRobot("10.216.30.1") 
