@@ -1,11 +1,11 @@
 # SAE-1.4-python
-code permetant a jjouer au puissance 4 avec un bras nirio de façon autonome 
+code permettant a jouer au puissance 4 avec un bras niryo de façon autonome 
 
 
-# biblioteques utilisées :
-        pynirio --> va permetre d'utiliser les commande pour controler le nyrio 
+# bibliothèques utilisées :
+        pyniryo --> va permetre d'utiliser les commande pour controler le nyrio 
         time    --> utilisé sur une seul instance pour une 
-        random  --> utilisé pour le mode random de jeu qui selectionne une colonne aleatoirement pour jouer
+        random  --> utilisé pour le mode random de jeu qui séléctionne une colonne aléatoirement pour jouer
         serial  --> sert pour la lecture de la distance provenant du port serie envoyer par le capteur ultrason
 
 # explication du programme:
@@ -20,8 +20,8 @@ premier while true sert pour le choix de la difficulter avant de passer sur la s
 qui elle est la boucle infini du fonctionnement general et qui appelle les autre fonction 
 
 ## optimisation :
-    amelioration de la visibiliter par des variables rennomées 
-    supression de repetition dans le programme evitant d'utiliser des ressourse inutile
+    amélioration de la visibilité par des variables renommées 
+    supression de répétition dans le programme evitant d'utiliser des ressourse inutile
 
 # Algorithme de décision Minimax 
 ## Algorithme d'anticipation et de prise de décision pour des jeux 
