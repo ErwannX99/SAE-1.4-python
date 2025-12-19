@@ -80,8 +80,11 @@ Maintenir DEPTH_MINMAX entre 6 et 8 pour le temps réel
 controle des mouvement du nirio avec des positions generalisées 
 
 ## Spécification :
-    
-
+    hauteur tuple des hauteur
+    position_X tuple des positions des x 
+    position_Y tuple des positions des Y
+    position haut et drop utilise les tuples precedent
+    des fonctions move_linear_pose utilise les postion et drop en fonction des colonne choisis 
 
 # logique_jeu :
 
