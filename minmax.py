@@ -1,7 +1,5 @@
 from pyniryo import *
-import time
 import random
-import serial
 from logique_jeu import drop_piece, verif_gagnant, coups_valides  #importations des différentes parties du programme
 #importation des bibliothèques nécessaire au fonctionnement 
 depth_MINMAX = 7 #nombre de coup calculer à l'avance
