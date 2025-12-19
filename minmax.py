@@ -2,7 +2,7 @@ from pyniryo import *
 import time
 import random
 import serial
-from logique_jeu import drop_piece, verif_gagnant, coups_valides  #impportations des différentes parties du programme
+from logique_jeu import drop_piece, verif_gagnant, coups_valides  #importations des différentes parties du programme
 #importation des bibliothèques nécessaire au fonctionnement 
 depth_MINMAX = 7 #nombre de coup calculer à l'avance
 
@@ -44,6 +44,29 @@ def eval_fonction(matrice, joueur):
             if fenetre.count(adversaire) == 3 and fenetre.count(0) == 1:
                 score -= 10
 
+    for ligne in range(3):
+        for colonne in range (4):
+            fenetre = [matrice[ligne + i] + [colonne + i ]for i in range(4)]
+            if fenetre.count(joueur) == 4:
+                score += 100
+            elif fenetre.count(joueur) == 3 and fenetre.count(0) == 1:
+                score += 10
+                
+            if fenetre.count(adversaire) == 3 and fenetre.count(0) == 1:
+                score -= 10
+
+    for ligne in range(3-6):
+        for colonne in range(4):
+            fenetre = [matrice[ligne + i] + [colonne + i ]for i in range(4)]
+            if fenetre.count(joueur) == 4:
+                score += 100
+            elif fenetre.count(joueur) == 3 and fenetre.count(0) == 1:
+                score += 10
+                
+            if fenetre.count(adversaire) == 3 and fenetre.count(0) == 1:
+                score -= 10
+
+
     return score
 
 
@@ -68,6 +91,7 @@ def minmax_alpha_beta(matrice, depth, alpha, beta, maximizing, joueur): #fonctio
     
     valid = coups_valides(matrice)
     terminal = verif_gagnant(matrice, 2) or verif_gagnant(matrice, 1) or len(valid) == 0 or depth == 0
+    #terminal correspond à l'arrêt de la simulation 
 
     if terminal:
         if verif_gagnant(matrice, 2):
@@ -77,6 +101,7 @@ def minmax_alpha_beta(matrice, depth, alpha, beta, maximizing, joueur): #fonctio
         else:
             return (None, eval_fonction(matrice, 2))
 
+    #l'algo trouve le score le plus maximisant pour lui
     if maximizing:
         max_eval = -float("inf")
         best_col = random.choice(valid) if valid else None
