@@ -85,6 +85,9 @@ controle des mouvement du nirio avec des positions generalisées
     position_Y tuple des positions des Y
     position haut et drop utilise les tuples precedent
     des fonctions move_linear_pose utilise les postion et drop en fonction des colonne choisis 
+# Optimisation :
+    rassemblement des variable en tuple 
+    meilleur nom de variable
 
 # logique_jeu :
 
